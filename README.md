@@ -9,7 +9,7 @@ Project layout
 ==============
 The Maven projects contained within are as follows:
 
-* `smxb-ping-pong` - Contains an XML features file used to install the rest of the bundles.
+* `smxb-features` - Contains an XML features file used to install the rest of the bundles.
 * `smxb-pinger` - Contains a bundle that periodically sends a ping message over the embedded ActiveMQ instance. Also exposes a RESTful web service on port 9090 that allows you you ping the service manually.
 * `smxb-ponger` - Listens on the queue and replies after invoking an OSGi Blueprint service to generate a response. Contains an additional NMR-based route as an alternative mechanism for chatting with the pinger in the same ServiceMix instance.
 * `smxb-ponger-service` - Contains the implementation of that service.
@@ -54,16 +54,16 @@ If `camel-jetty` does not appear in the bundle list, install it; it is required 
 
 	karaf@root> features:install camel-jetty
 
-Install the `smxb-ping-pong` features file. This gets pulled out from your local Maven repository, and defines which bundles you mean to install for the bootstrap project.
+Install the `smxb-features` features file. This gets pulled out from your local Maven repository, and defines which bundles you mean to install for the bootstrap project.
 
-	karaf@root> features:addurl mvn:com.fusesource.examples/smxb-ping-pong/1.0-SNAPSHOT/xml/features
+	karaf@root> features:addurl mvn:com.fusesource.examples/smxb-features/1.0-SNAPSHOT/xml/features
 	
 You can now check that the features defined in that file are available for installation:
 
 	karaf@root> features:list | grep smxb
-	[uninstalled] [1.0                 ] smxb-ping-pong                       smxb-ping-pong-1.0-SNAPSHOT       
-	[uninstalled] [1.0                 ] smxb-ping                            smxb-ping-pong-1.0-SNAPSHOT       
-	[uninstalled] [1.0                 ] smxb-pong                            smxb-ping-pong-1.0-SNAPSHOT
+	[uninstalled] [1.0                 ] smxb-ping-pong                       smxb-features-1.0-SNAPSHOT       
+	[uninstalled] [1.0                 ] smxb-ping                            smxb-features-1.0-SNAPSHOT       
+	[uninstalled] [1.0                 ] smxb-pong                            smxb-features-1.0-SNAPSHOT
 	
 _NP: It's often a good idea to prefix all of your features and bundles with a known string, such as `smxb` in this case, so you can easily find them via the grep command in the various listings._
 

@@ -20,9 +20,12 @@
     	<feature version="1.0">smxb-pong</feature>
     </feature>
     <feature name="smxb-ping" version="1.0">
+    	<feature>camel-jetty</feature>
+    	<feature>camel-nmr</feature>
         <bundle>mvn:com.fusesource.examples/smxb-pinger/1.0-SNAPSHOT</bundle>
     </feature>
     <feature name="smxb-pong" version="1.0">
+    	<feature>camel-nmr</feature>
         <bundle>mvn:com.fusesource.examples/smxb-ponger/1.0-SNAPSHOT</bundle>
         <bundle>mvn:com.fusesource.examples/smxb-ponger-service/1.0-SNAPSHOT</bundle>
     </feature>
