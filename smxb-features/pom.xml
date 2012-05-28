@@ -25,19 +25,11 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-	<groupId>com.fusesource.examples</groupId>
-	<artifactId>smxb-ping-pong</artifactId>
+	<artifactId>smxb-features</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
 
-	<name>smxb-ping-pong</name>
+	<name>smxb-features</name>
 	<description>Request-response between bundles over ActiveMQ</description>
-
-	<modules>
-		<module>../smxb-pinger</module>
-		<module>../smxb-ponger</module>
-		<module>../smxb-ponger-service</module>
-	</modules>
 
     <build>
         <defaultGoal>install</defaultGoal>

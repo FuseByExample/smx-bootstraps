@@ -1,67 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright 2012 FuseSource
-  ~
-  ~    Licensed under the Apache License, Version 2.0 (the "License");
-  ~    you may not use this file except in compliance with the License.
-  ~    You may obtain a copy of the License at
-  ~
-  ~        http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~    Unless required by applicable law or agreed to in writing, software
-  ~    distributed under the License is distributed on an "AS IS" BASIS,
-  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~    See the License for the specific language governing permissions and
-  ~    limitations under the License.
-  -->
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:camel="http://camel.apache.org/schema/blueprint"
-    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
-    xsi:schemaLocation="
+<!-- ~ Copyright 2012 FuseSource ~ ~ Licensed under the Apache License, Version 
+	2.0 (the "License"); ~ you may not use this file except in compliance with 
+	the License. ~ You may obtain a copy of the License at ~ ~ http://www.apache.org/licenses/LICENSE-2.0 
+	~ ~ Unless required by applicable law or agreed to in writing, software ~ 
+	distributed under the License is distributed on an "AS IS" BASIS, ~ WITHOUT 
+	WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. ~ See the 
+	License for the specific language governing permissions and ~ limitations 
+	under the License. -->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/blueprint"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xsi:schemaLocation="
        http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
        http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/spring/camel-blueprint.xsd">
 
-	<bean id="pingBean" class="com.fusesource.examples.pinger.impl.PingBean"/>
+	<bean id="pingBean" class="com.fusesource.examples.pinger.impl.PingBean" />
 
 	<cm:property-placeholder persistent-id="com.fusesource.examples.pinger"
 		update-strategy="reload">
 		<cm:default-properties>
 			<cm:property name="broker.url" value="failover:(tcp://127.0.0.1:61616)" />
-      <cm:property name="jetty.port" value="9090" /> 
-			<cm:property name="ping.frequency" value="5000" />
+			<cm:property name="jetty.port" value="9090" />
+			<cm:property name="ping.frequency" value="15000" />
 		</cm:default-properties>
 	</cm:property-placeholder>
 
-  <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
-    <property name="brokerURL" value="${broker.url}" />
-  </bean>
+	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+		<property name="brokerURL" value="${broker.url}" />
+	</bean>
 
-  <bean id="jetty" class="org.apache.camel.component.jetty.JettyHttpComponent"/>
+	<bean id="jetty" class="org.apache.camel.component.jetty.JettyHttpComponent" />
 
-	<camelContext id="smxb-pinger" xmlns="http://camel.apache.org/schema/blueprint">
+	<camelContext id="smxb-pinger"
+		xmlns="http://camel.apache.org/schema/blueprint">
 		<route id="pingFromTimer">
-			<from uri="timer:foo?period={{ping.frequency}}"/>
+			<from uri="timer:foo?period={{ping.frequency}}" />
 			<setBody>
-				<method ref="pingBean" method="ping"/>
+				<method method="ping" ref="pingBean"></method>
 			</setBody>
-			<log message="Timer generated ${body}"/>
-			<to uri="direct:toActiveMQ"/>
+			<log message="Timer generated ${body}" />
+			<to uri="direct:toActiveMQ" />
 		</route>
-
-    <route id="pingFromJettyRest">
-      <from uri="jetty:http://localhost:{{jetty.port}}/ping" />
-      <transform>
-        <simple>${headers.msg}</simple>
-      </transform>
-      <to uri="direct:toActiveMQ"/>
-    </route>
-
-    <route id="toActiveMQ">
-      <from uri="direct:toActiveMQ" />
-      <inOut uri="activemq:pings" />
-			<log message="Received ${body}"/>
-    </route>
+		<route id="pingFromJettyRest">
+			<from uri="jetty:http://localhost:{{jetty.port}}/ping" />
+			<transform>
+				<simple>${headers.msg}</simple>
+			</transform>
+			<choice>
+				<when>
+					<simple>${headers.via} == 'NMR'</simple>
+					<to uri="direct:toNmr" />
+				</when>
+				<otherwise>
+					<to uri="direct:toActiveMQ" />
+				</otherwise>
+			</choice>
+		</route>
+		<route id="toActiveMQ">
+			<from uri="direct:toActiveMQ" />
+			<inOut uri="activemq:pings" />
+			<log message="Received ${body}" />
+		</route>
+		<route id="toNmr">
+			<from uri="direct:toNmr" />
+			<inOut uri="nmr:pong" />
+			<log message="Received ${body}" />
+		</route>
 	</camelContext>
 
 </blueprint>

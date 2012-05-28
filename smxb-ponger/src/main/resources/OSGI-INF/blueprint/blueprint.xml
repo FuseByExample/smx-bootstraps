@@ -42,27 +42,27 @@
     </bean>
 
     <camelContext id="smxb-ponger" xmlns="http://camel.apache.org/schema/blueprint">
-        <route id="fromNmr">
-            <from uri="nmr:pong" />
-            <to uri="direct:pong" />
-            <setBody>
-                <simple>NMR: [${body}]</simple>
-            </setBody>
-        </route>
-        <route id="fromActiveMQ">
-            <from uri="activemq:pings?transactedInOut=true" />
-            <inOut uri="direct:pong" />
-            <setBody>
-                <simple>AMQ: [${body}]</simple>
-            </setBody>
-        </route>
-        <route id="pong">
-            <from uri="direct:pong" />
-            <log message="{{pong.logMessage}}: ${body}" />
-            <setBody>
-                <method ref="pongReference" method="pong" />
-            </setBody>
-        </route>
-    </camelContext>
+    <route id="fromNmr">
+        <from uri="nmr:pong"/>
+        <to uri="direct:pong"/>
+        <setBody>
+            <simple>NMR: [${body}]</simple>
+        </setBody>
+    </route>
+    <route id="fromActiveMQ">
+        <from uri="activemq:pings?transactedInOut=true"/>
+        <inOut uri="direct:pong"/>
+        <setBody>
+            <simple>AMQ: [${body}]</simple>
+        </setBody>
+    </route>
+    <route id="pong">
+        <from uri="direct:pong"/>
+        <log message="{{pong.logMessage}}: ${body}"/>
+        <setBody>
+            <method method="pong" ref="pongReference"></method>
+        </setBody>
+    </route>
+</camelContext>
 
 </blueprint>
