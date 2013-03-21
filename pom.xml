@@ -20,9 +20,9 @@
 	<name>smx-bootstraps</name>
 
 	<properties>
-		<camel-version>2.8.4</camel-version>
-		<activemq-camel-version>5.5.1</activemq-camel-version>
-		<servicemix-version>4.4.1</servicemix-version>
+		<camel-version>2.10.0.redhat-60020</camel-version>
+		<activemq-camel-version>5.8.0.redhat-60020</activemq-camel-version>
+		<servicemix-version>4.5.0.redhat-60020</servicemix-version>
 
 		<maven-compiler-plugin-version>2.5</maven-compiler-plugin-version>
 		<maven-bundle-plugin-version>2.3.6</maven-bundle-plugin-version>
@@ -68,4 +68,29 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+    <repositories>
+        <repository>
+            <id>release.fusesource.org</id>
+            <name>FuseSource Release Repository</name>
+            <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>fusesource.ea</id>
+            <name>FuseSource Early Access</name>
+            <url>http://repo.fusesource.com/nexus/content/groups/ea/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
 </project>
