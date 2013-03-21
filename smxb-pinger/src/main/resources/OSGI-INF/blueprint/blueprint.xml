@@ -27,6 +27,8 @@
 
 	<bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
 		<property name="brokerURL" value="${broker.url}" />
+        <property name="userName" value="admin"/>
+        <property name="password" value="admin"/>
 	</bean>
 
 	<bean id="jetty" class="org.apache.camel.component.jetty.JettyHttpComponent" />
