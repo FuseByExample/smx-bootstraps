@@ -43,7 +43,7 @@ Start up JBoss Fuse
     | |__| | |_) | (_) \__ \__ \ | |  | |_| \__ \  __/
      \____/|____/ \___/|___/___/ |_|   \__,_|___/\___|
 
-      JBoss Fuse (6.0.0.redhat-020)
+      JBoss Fuse (6.0.0.redhat-024)
       http://www.redhat.com/products/jbossenterprisemiddleware/fuse/
 
     Hit '<tab>' for a list of available commands
@@ -79,11 +79,11 @@ Install all of the necessary OSGi bundles by installing the `smxb-ping-pong` fea
 Every 15 seconds, the 'smxb-pinger' bundle will send a message. The log should now contain output from your bundles
 
 	JBossFuse:karaf@root>  log:display -n 5
-	2013-03-21 14:24:43,139 | INFO  | sConsumer[pings] | pong                             | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Received ping: Ping at 2013-03-21 14:24:43
-    2013-03-21 14:24:43,140 | INFO  | lyManager[pings] | toActiveMQ                       | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Received AMQ: [Pong from service to [Ping at 2013-03-21 14:24:43]]
-    2013-03-21 14:24:58,136 | INFO  | #0 - timer://foo | pingFromTimer                    | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Timer generated Ping at 2013-03-21 14:24:58
-    2013-03-21 14:24:58,139 | INFO  | sConsumer[pings] | pong                             | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Received ping: Ping at 2013-03-21 14:24:58
-    2013-03-21 14:24:58,169 | INFO  | lyManager[pings] | toActiveMQ                       | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Received AMQ: [Pong from service to [Ping at 2013-03-21 14:24:58]]
+	2013-03-21 14:24:43,139 | INFO  | sConsumer[pings] | pong                             | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Received ping: Ping at 2013-03-21 14:24:43
+    2013-03-21 14:24:43,140 | INFO  | lyManager[pings] | toActiveMQ                       | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Received AMQ: [Pong from service to [Ping at 2013-03-21 14:24:43]]
+    2013-03-21 14:24:58,136 | INFO  | #0 - timer://foo | pingFromTimer                    | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Timer generated Ping at 2013-03-21 14:24:58
+    2013-03-21 14:24:58,139 | INFO  | sConsumer[pings] | pong                             | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Received ping: Ping at 2013-03-21 14:24:58
+    2013-03-21 14:24:58,169 | INFO  | lyManager[pings] | toActiveMQ                       | ?                                   ? | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Received AMQ: [Pong from service to [Ping at 2013-03-21 14:24:58]]
 
 Check that the web service is running by hitting the following from your web browser:
 
@@ -135,16 +135,16 @@ This assumes that the `cm:property-placheholders` are configured with `update-st
 
 The log should show the affected Camel routes stopping and starting:
 
-	14:31:58,764 | INFO  | Thread-55        | BlueprintCamelContext            | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Apache Camel 2.10.0.redhat-60020 (CamelContext: smxb-pinger) is shutting down
-    14:31:58,765 | INFO  | Thread-55        | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Starting to graceful shutdown 4 routes (timeout 300 seconds)
-    14:31:58,767 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Route: toNmr shutdown complete, was consuming from: Endpoint[direct://toNmr]
-    14:31:58,767 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Route: toActiveMQ shutdown complete, was consuming from: Endpoint[direct://toActiveMQ]
-    14:31:58,845 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Route: pingFromJettyRest shutdown complete, was consuming from: Endpoint[http://localhost:9090/ping]
-    14:31:58,845 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Route: pingFromTimer shutdown complete, was consuming from: Endpoint[timer://foo?period=15000]
-    14:31:58,845 | INFO  | Thread-55        | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Graceful shutdown of 4 routes completed in 0 seconds
-    14:31:59,181 | INFO  | Thread-55        | DefaultTypeConverter             | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | TypeConverterRegistry utilization[attempts=380, hits=379, misses=1, failures=0] mappings[total=210, misses=1]
-    14:31:59,183 | INFO  | Thread-55        | BlueprintCamelContext            | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Apache Camel 2.10.0.redhat-60020 (CamelContext: smxb-pinger) is shutdown in 0.418 seconds. Uptime 9 minutes.
-    14:31:59,205 | INFO  | NAPSHOT-thread-2 | ManagementStrategyFactory        | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | JMX enabled.
-    14:31:59,212 | INFO  | NAPSHOT-thread-2 | BlueprintCamelContext            | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60020 | Apache Camel 2.10.0.redhat-60020 (CamelContext: smxb-pinger) is starting
+	14:31:58,764 | INFO  | Thread-55        | BlueprintCamelContext            | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Apache Camel 2.10.0.redhat-60024 (CamelContext: smxb-pinger) is shutting down
+    14:31:58,765 | INFO  | Thread-55        | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Starting to graceful shutdown 4 routes (timeout 300 seconds)
+    14:31:58,767 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Route: toNmr shutdown complete, was consuming from: Endpoint[direct://toNmr]
+    14:31:58,767 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Route: toActiveMQ shutdown complete, was consuming from: Endpoint[direct://toActiveMQ]
+    14:31:58,845 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Route: pingFromJettyRest shutdown complete, was consuming from: Endpoint[http://localhost:9090/ping]
+    14:31:58,845 | INFO  | 6 - ShutdownTask | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Route: pingFromTimer shutdown complete, was consuming from: Endpoint[timer://foo?period=15000]
+    14:31:58,845 | INFO  | Thread-55        | DefaultShutdownStrategy          | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Graceful shutdown of 4 routes completed in 0 seconds
+    14:31:59,181 | INFO  | Thread-55        | DefaultTypeConverter             | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | TypeConverterRegistry utilization[attempts=380, hits=379, misses=1, failures=0] mappings[total=210, misses=1]
+    14:31:59,183 | INFO  | Thread-55        | BlueprintCamelContext            | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Apache Camel 2.10.0.redhat-60024 (CamelContext: smxb-pinger) is shutdown in 0.418 seconds. Uptime 9 minutes.
+    14:31:59,205 | INFO  | NAPSHOT-thread-2 | ManagementStrategyFactory        | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | JMX enabled.
+    14:31:59,212 | INFO  | NAPSHOT-thread-2 | BlueprintCamelContext            | 130 - org.apache.camel.camel-core - 2.10.0.redhat-60024 | Apache Camel 2.10.0.redhat-60024 (CamelContext: smxb-pinger) is starting
 
 Using this mechanism you can externalise any environment-specific config. If you like, define some properties to echo a different pong message and have a go at modifying them externally.
