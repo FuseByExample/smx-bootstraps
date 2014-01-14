@@ -1,4 +1,6 @@
-This projects contains a set of OSGi bundles that bootstrap the use of JBoss Fuse 6.0.0. It is intended as a starting point for the creation of additional bundles, and as a guide to using Fuse feaures.
+## TODO change fuse versions
+
+This projects contains a set of OSGi bundles that bootstrap the use of JBoss Fuse 6.1.0. It is intended as a starting point for the creation of additional bundles, and as a guide to using Fuse feaures.
 
 The Ping Pong bootstrap is used to show inter-bundle request-response communication using ActiveMQ. 
 
@@ -34,7 +36,7 @@ For this example, we need to add some credentials to the `$JBOSS_FUSE_HOME/etc/u
 
 Start up JBoss Fuse
 
-	$JBOSS_FUSE_HOME> bin/servicemix console
+	$JBOSS_FUSE_HOME> bin/fuse
 	
           _ ____                  ______
          | |  _ \                |  ____|
@@ -43,7 +45,7 @@ Start up JBoss Fuse
     | |__| | |_) | (_) \__ \__ \ | |  | |_| \__ \  __/
      \____/|____/ \___/|___/___/ |_|   \__,_|___/\___|
 
-      JBoss Fuse (6.0.0.redhat-024)
+      JBoss Fuse (6.1.0.redhat-312)
       http://www.redhat.com/products/jbossenterprisemiddleware/fuse/
 
     Hit '<tab>' for a list of available commands
