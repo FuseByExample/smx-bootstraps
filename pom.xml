@@ -20,9 +20,9 @@
 	<name>smx-bootstraps</name>
 
 	<properties>
-		<camel-version>2.12.0.redhat-610312</camel-version>
-		<activemq-camel-version>5.9.0.redhat-610312</activemq-camel-version>
-		<servicemix-version>4.5.0.redhat-610312</servicemix-version>
+		<camel-version>2.12.0.redhat-610379</camel-version>
+		<activemq-camel-version>5.9.0.redhat-610379</activemq-camel-version>
+		<servicemix-version>4.5.0.redhat-610379</servicemix-version>
 
 		<maven-compiler-plugin-version>2.5</maven-compiler-plugin-version>
 		<maven-bundle-plugin-version>2.3.6</maven-bundle-plugin-version>
@@ -71,20 +71,20 @@
 
     <repositories>
         <repository>
-            <id>release.fusesource.org</id>
+            <id>fusesource.releases</id>
             <name>FuseSource Release Repository</name>
-            <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
         <repository>
             <id>fusesource.ea</id>
-            <name>FuseSource Early Access</name>
-            <url>http://repo.fusesource.com/nexus/content/groups/ea/</url>
+            <name>FuseSource Early Access Release Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/ea/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
