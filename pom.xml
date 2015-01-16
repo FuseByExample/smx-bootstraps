@@ -20,14 +20,17 @@
 	<name>smx-bootstraps</name>
 
 	<properties>
-		<camel-version>2.12.0.redhat-610379</camel-version>
-		<activemq-camel-version>5.9.0.redhat-610379</activemq-camel-version>
-		<servicemix-version>4.5.0.redhat-610379</servicemix-version>
+		<camel.version>2.14.0.redhat-620058</camel.version>
+		<activemq.camel.version>5.9.0.redhat-611420</activemq.camel.version>
+		<servicemix.version>4.5.0.redhat-611420</servicemix.version>
 
-		<maven-compiler-plugin-version>2.5</maven-compiler-plugin-version>
-		<maven-bundle-plugin-version>2.3.6</maven-bundle-plugin-version>
-		<build-plugins-plugin-version>2.5</build-plugins-plugin-version>
-		<build-helper-plugin-version>1.7</build-helper-plugin-version>
+		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.bundle.plugin.version>2.3.7</maven.bundle.plugin.version>
+		<build.helper.maven.plugin>1.9.1</build.helper.maven.plugin>
+		<maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+		<karaf.features.maven.plugin.version>2.4.1</karaf.features.maven.plugin.version>
 
 		<osgi-import-package>*,org.apache.camel.osgi</osgi-import-package>
 	</properties>
@@ -45,10 +48,10 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin-version}</version>
+					<version>${maven.compiler.plugin.version}</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
 					</configuration>
 				</plugin>
 
@@ -56,7 +59,7 @@
 				<plugin>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
-					<version>${maven-bundle-plugin-version}</version>
+					<version>${maven.bundle.plugin.version}</version>
 					<extensions>true</extensions>
 					<configuration>
 						<instructions>
