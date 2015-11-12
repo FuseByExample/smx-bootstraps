@@ -20,9 +20,9 @@
 	<name>smx-bootstraps</name>
 
 	<properties>
-		<camel.version>2.14.0.redhat-620058</camel.version>
-		<activemq.camel.version>5.9.0.redhat-611420</activemq.camel.version>
-		<servicemix.version>4.5.0.redhat-611420</servicemix.version>
+		<camel.version>2.15.1.redhat-620133</camel.version>
+		<activemq.camel.version>5.11.0.redhat-620133</activemq.camel.version>
+		<servicemix.version>4.5.3</servicemix.version>
 
 		<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
