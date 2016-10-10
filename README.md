@@ -1,4 +1,5 @@
-## TODO change fuse versions
+NOTE: This project is not supported on JBoss Fuse version 6.3 or later
+-----------------------------------------------------------------------
 
 This projects contains a set of OSGi bundles that bootstrap the use of JBoss Fuse 6.1.0. It is intended as a starting point for the creation of additional bundles, and as a guide to using Fuse feaures.
 
